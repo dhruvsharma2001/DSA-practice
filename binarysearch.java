@@ -1,4 +1,3 @@
-import java.util.*;
 public class binarysearch {
     public static int bin(int numbers[],int key){
         int start=0,end = numbers.length-1;
@@ -19,6 +18,7 @@ public class binarysearch {
     }
     public static void main(String args[]){
         int numbers[] = {1,2,6,3,5};
+        // int numbers[] = {1 ,1 ,1 ,2 ,2 ,3 ,3 ,3 ,3 ,3 ,3 ,4 ,4 ,4 ,5 ,5 ,5};
         int key=6;
         System.out.println("nu is largest : " + bin(numbers,key));
     }
