@@ -1,5 +1,5 @@
 public class stocks {
-    public static int buyandsellpricestocks(int prices[])
+    public static int buyandsellpricestocksSingleTransaction(int prices[])
     {
         int buyprice=Integer.MAX_VALUE;
         int maxprofit=0;
@@ -16,8 +16,8 @@ public class stocks {
  return maxprofit;
     }
     public static void main(String args[]){
-    int prices[] = {7,1,5,3,6,4};
-    System.out.println(buyandsellpricestocks(prices));
+    int prices[] = {100 ,180 ,260 ,310 ,40 ,535 ,695};
+    System.out.println(buyandsellpricestocksSingleTransaction(prices));
     }
     }
 
