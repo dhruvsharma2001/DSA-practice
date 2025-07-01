@@ -1,4 +1,3 @@
-import java.util.*;
 public class DiameterOfBinaryTree {
     public static class Node {
         int data;
@@ -10,40 +9,28 @@ public class DiameterOfBinaryTree {
             this.right = null;
         }
     }
-    public static int Diameter(Node root){
-        if(root == null){
+    
+    public static int height(Node root) {
+        if (root == null) {
             return 0;
         }
-        Stack<Node> s = new Stack<>();
-        Map<Node, Integer> map = new HashMap<>();
-        int diameter = 0;
 
-        if(root!=null){
-            s.push(root);
+        int lh = height(root.left);
+        int rh = height(root.right);
+        return Math.max(rh, lh) + 1;
+    }
+
+    public static int diameterOfBinaryTree(Node root) {
+        if (root == null) {
+            return 0;
         }
-        while(!s.isEmpty()){
-            Node node = s.peek();
+        int leftdiam = diameterOfBinaryTree(root.left);
+        int lefth = height(root.left);
+        int rightdiam = diameterOfBinaryTree(root.right);
+        int righth = height(root.right);
 
-            //fill up stack to perform post order
-            if(node.left!=null && !map.containsKey(node)){
-                s.push(node.left);
-            }
-            else if(node.right != null && !map.containsKey(node)){
-                s.push(node.right);
-            }else{
-                //process root once left and right
-                s.pop();
-
-                int leftDepth = map.getOrDefault(node.left, 0);
-                int rightDepth = map.getOrDefault(node, 0);
-
-                map.put(node, 1+ Math.max(leftDepth, rightDepth));
-                diameter = Math.max(diameter, leftDepth+rightDepth);
-
-            }
-        }
-        return diameter;
-
+        int selfdiam = lefth + righth;
+        return Math.max(selfdiam, Math.max(leftdiam, rightdiam));
     }
     
     public static void main(String[] args) {
@@ -61,6 +48,6 @@ public class DiameterOfBinaryTree {
         //   / \     / \
         //  4   5   6   7
 
-        System.out.println(Diameter(root));
+        System.out.println(diameterOfBinaryTree(root));
     }
 }
