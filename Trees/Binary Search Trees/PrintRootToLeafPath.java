@@ -54,6 +54,37 @@ public class PrintRootToLeafPath {
 
         return allPaths;
     }
+
+    //----------------LEETCODE-----------------------------
+    public List<String> binaryTreePaths(Node root) {
+        List<String> result = new ArrayList<>();
+        if (root == null)
+            return result;
+
+        buildPaths(root, "", result);
+        return result;
+    }
+
+    private void buildPaths(Node node, String path, List<String> result) {
+        if (node == null)
+            return;
+
+        // Add current node to the path
+        if (path.length() > 0) {
+            path += "->";
+        }
+        path += node.data;
+
+        // If it's a leaf, add path to result
+        if (node.left == null && node.right == null) {
+            result.add(path);
+            return;
+        }
+
+        // Recur left and right
+        buildPaths(node.left, path, result);
+        buildPaths(node.right, path, result);
+    }
     
     public static void main(String args[]) {
         Node root = new Node(1);
