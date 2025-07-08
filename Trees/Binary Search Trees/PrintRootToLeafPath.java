@@ -30,6 +30,30 @@ public class PrintRootToLeafPath {
         Root2LeafPath(path, root.right);
         path.remove(path.size()-1);
     }
+
+    public static void Path(Node root, ArrayList<Integer> path, ArrayList<ArrayList<Integer>> allPaths) {
+        if (root == null) {
+            return;
+        }
+        path.add(root.data);
+        if (root.left == null && root.right == null) {
+            allPaths.add(new ArrayList<>(path));
+        }
+
+        Path(root.left, path, allPaths);
+        Path(root.right, path, allPaths);
+        path.remove(path.size() - 1);
+    }
+
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+        // code here
+        ArrayList<ArrayList<Integer>> allPaths = new ArrayList<>();
+        ArrayList<Integer> currentPath = new ArrayList<>();
+
+        Path(root, currentPath, allPaths);
+
+        return allPaths;
+    }
     
     public static void main(String args[]) {
         Node root = new Node(1);
