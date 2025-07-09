@@ -1,5 +1,5 @@
 import java.util.*;
-public class BSTtobalanced {
+public class BSTtoBalancedBST {
     static class Node{
         int data;
         Node left;
